@@ -49,7 +49,7 @@ void splitValueQuadraticEquation(char str[]) {
 }
 
 void splitValueCubicEquation(char str[]) {
-  //  4x^3-3x^2+6x-9=0
+  //  2x^3-6x^2+9x-16=0
   int i = 0, j = 0;
   while (str[i] != 'x') {
     a0[j] = str[i];
@@ -58,6 +58,7 @@ void splitValueCubicEquation(char str[]) {
   }
   a0[j] = '\0';
   i += 3;
+  j = 0;
   while (str[i] != 'x') {
     b0[j] = str[i];
     i++;

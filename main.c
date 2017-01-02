@@ -36,16 +36,19 @@ void playCredit() {
 }
 
 void showHelp() {
+  printf("************************************\n");
   printf("With MAGIC CALCULATOR, you can: \n");
   printf("> Calculate the Value of Expression.\n");
   printf("    Example: 9/(1+2)*sqrt(16)-sin(90)\n");
   printf("> Solve Quadratic/Cubic Equation.\n");
-  printf("    Example: x^3-3x^2+6x=9\n");
+  printf("    Example: x^3-3x^2+6x-9=0\n");
   printf("> Solve Two/Three hiddens Equation.\n");
   printf("    Example: 2x-y=6&x+y=4\n");
   printf("> Converting Any Bases to Others\n");
   printf("    Example: (10)69to(2)\n");
   printf("View Credit: type -c\n");
+  printf("Exit Program: type -e\n");
+  printf("************************************\n");
 }
 
 void playMagicMode() {
@@ -88,6 +91,8 @@ int readLine() {
       return 4;
     if (stringLine[0] == '-' && stringLine[1] == 'c')
       return 5;
+    if (stringLine[0] == '-' && stringLine[1] == 'e')
+      return 6;
   }
   for (int i = 0; i <= strlen(stringLine) - 1; i++) {
     if (stringLine[i] == 't' && stringLine[i+1] == 'o')
@@ -137,7 +142,10 @@ int main(void) {
               break;
       case 5: playCredit();
               break;
+      case 6: isStop = 1;
+              break;
     };
+    /*
     printf("Do you want to continue (Y/N)?\n");
     do {
       check = isContinue();
@@ -146,6 +154,7 @@ int main(void) {
       else if (check == 0)
         isStop = 1;
     } while (check == -1);
+    */
     if (isStop)
       printf("Bye bye!\n");
   } while (isStop == 0);
