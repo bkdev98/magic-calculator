@@ -54,7 +54,7 @@ void showHelp() {
 void playMagicMode() {
   printf("MAGIC CALCULATOR\n");
   printf("Current Mode: Deg | Magic\n");
-  printf("Put whatever you want to solve, or -h for help.\n");
+  printf("Type -h for help, or -e to exit.\n");
 }
 
 /*
@@ -84,6 +84,7 @@ int readLine() {
   // 3: converting base.
   // 4: show help
   // 5: play credit
+  // 6: exit
   printf("$ ~ ");
   scanf("%s", stringLine);
   if (strlen(stringLine) == 2) {
@@ -130,6 +131,8 @@ int main(void) {
       case -3: printf("Base Converter: Syntax error. Please try again!\n");
               break;
       case -2: printf("Equation Calculator: Syntax error. Please try again!\n");
+              break;
+      case -1: printf("Expression Calculator: Syntax error. Please try again!\n");
               break;
       case 1: printf("calculateExpression\n");
               //  calculateExpression(stringLine);

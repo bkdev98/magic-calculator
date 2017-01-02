@@ -22,7 +22,6 @@ void convert(int in, int ou, char number[]) {
     --index;
     for(  ; index > -1; index--)
         printf("%c", base16[res[index]]);
-    printf("    -> saved to 'ans'.");
     printf("\n");
 }
 
