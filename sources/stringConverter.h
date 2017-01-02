@@ -4,23 +4,23 @@ char * numberToString(long double num) {
     return output;
 }
 
-int stringToNumber(char s[]) {
+long double stringToNumber(char s[]) {
     int i = 0;
-    int number = 0, tmp;
+    long double number = 0, tmp;
 
     while (i < strlen(s)){
         if (s[i] == '.')
             break;
         i++;
     }
-    if (s[0] == '-' && i != strlen(s)){
+    if ((s[0] == '-' || s[0] == '+') && i != strlen(s)){
         tmp = 1 / pow(10, (strlen(s) - i - 1));
         for (int j = (strlen(s) - 1); j > 0; j--)
             if (s[j] != '.'){
                 number += (s[j] - 48) * tmp;
                 tmp *= 10;
             }
-        if(number > 0) number *= -1;
+        if(s[0] == '-') number *= -1;
     }
 
     else if ( i != strlen(s)){
@@ -32,14 +32,14 @@ int stringToNumber(char s[]) {
             }
     }
 
-    else if (s[0] == '-' && i == strlen(s)){
+    else if ((s[0] == '-' || s[0] == '+') && i == strlen(s)){
         tmp = 1;
         for (int j = (strlen(s) - 1); j > 0; j--)
             {
                 number += (s[j] - 48) * tmp;
                 tmp *= 10;
             }
-        if(number > 0) number *= -1;
+        if(s[0] == '-') number *= -1;
     }
 
     else if ( i == strlen(s)){
