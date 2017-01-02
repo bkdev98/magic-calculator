@@ -1,3 +1,9 @@
+char * numberToString(long double num) {
+    static char output[50];
+    snprintf(output, 50, "%Lf", num);
+    return output;
+}
+
 int stringToNumber(char s[]) {
     int i = 0;
     int number = 0, tmp;
