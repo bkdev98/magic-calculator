@@ -1,3 +1,32 @@
+int check(char s[]){
+    int check = 0, checkB = 0;
+    if (s[0] != '+' && s[0] != '-' && (s[0] < 48 || s[0] > 57))
+        return 0;
+    else if (s[1] == '.' && (s[0] == '-' || s[0] == '+' || s[0] < 48 || s[0] > 57))
+        return 0;
+    else {
+        if (s[0] == '+' || s[0] == '-')
+            for (int i = 1; i < strlen (s); i++){
+                if ( s[i] == '.')
+                    check += 1;
+                if ( (s[i] < 48 || s[i] > 57) && s[i] != '.')
+                    checkB += 1;
+            }
+        else
+            for (int i = 0; i < strlen (s); i++){
+                if ( s[i] == '.')
+                    check += 1;
+                if ( (s[i] < 48 || s[i] > 57) && s[i] != '.')
+                    checkB += 1;
+            }
+    }
+    if (check > 1 || checkB > 0)
+        return 0;
+    else
+        return 1;
+
+}
+
 void swap(long double * numberA, long double * numberB)
 {
    *numberA = *numberA + *numberB;
@@ -19,7 +48,7 @@ char * twoHiddensEquation(char stA0[], char stB0[], char stC0[],
     static char s[100];
     if ((a0 == 0 && b0 == 0)||(a1 == 0 && b1 == 0))
     {
-        strcpy(s, "MATH ERROR");
+        strcpy(s, "No-Solution");
         return s;
     }
     long double det, x, y;
@@ -41,6 +70,8 @@ char * twoHiddensEquation(char stA0[], char stB0[], char stC0[],
     strcat(s, "\ny = ");
     strcat(s, numberToString(y));
 
+    if(check(numberToString(x)) == 0 || check(numberToString(y)) == 0)
+        strcpy(s, "No-Solution");
     return s;
 }
 
@@ -68,7 +99,7 @@ char * threeHiddensEquation(char sta0[], char stb0[], char stc0[], char std0[],
         (a1 == 0 && b1 == 0 && c1 == 0)||
         (a2 == 0 && b2 == 0 && c2 == 0))
     {
-        strcpy(s, "MATH ERROR");
+        strcpy(s, "No-Solution");
         return s;
     }
     long double det,
@@ -102,6 +133,9 @@ char * threeHiddensEquation(char sta0[], char stb0[], char stc0[], char std0[],
     z = (x7 * d0) + (x8 * d1) + (x9 * d2);
     strcat(s, "\nz = ");
     strcat(s, numberToString(z));
+
+    if(check(numberToString(x)) == 0 || check(numberToString(y)) == 0 || check(numberToString(z)) == 0)
+        strcpy(s, "No-Solution");
 
     return s;
 }
