@@ -433,7 +433,7 @@ void splitValueTwoHiddensEquation(char str[]) {
 
 
 void splitValueThreeHiddensEquation(char str[]) {
-  // -2x+3y-6=0&x-y=9
+  // -2x+3y-z-6=0&x-y+2z=9&x-y+z=1
   int i = 0, j = 0;
   while (str[i] != 'x') {
     a0[j] = str[i];
@@ -475,37 +475,55 @@ void splitValueThreeHiddensEquation(char str[]) {
   b0[j] = '\0';
   ++i;
   j = 0;
+  while (str[i] != 'z') {
+    c0[j] = str[i];
+    i++;
+    j++;
+  }
+  if (j == 1 && c0[0] == '-') {
+    c0[0] = '-';
+    c0[1] = '1';
+    j = 2;
+  }
+  if (j == 1 && c0[0] == '+') {
+    c0[0] = '+';
+    c0[1] = '1';
+    j = 2;
+  }
+  c0[j] = '\0';
+  ++i;
+  j = 0;
   if (str[i] != '=') {
     if (str[i] == '-') {
-      c0[j] = '+';
+      d0[j] = '+';
       j++;
       i++;
       while (str[i] != '=') {
-        c0[j] = str[i];
+        d0[j] = str[i];
         i++;
         j++;
       }
-      c0[j] = '\0';
+      d0[j] = '\0';
     } else if (str[i] =='+') {
-      c0[j] = '-';
+      d0[j] = '-';
       j++;
       i++;
       while (str[i] != '=') {
-        c0[j] = str[i];
+        d0[j] = str[i];
         i++;
         j++;
       }
-      c0[j] = '\0';
+      d0[j] = '\0';
     }
     i += 2;
   } else {
     i++;
     while (str[i] != '&') {
-      c0[j] = str[i];
+      d0[j] = str[i];
       i++;
       j++;
     }
-    c0[j] = '\0';
+    d0[j] = '\0';
   }
 
   ++i;
@@ -550,37 +568,55 @@ void splitValueThreeHiddensEquation(char str[]) {
   b1[j] = '\0';
   ++i;
   j = 0;
+  while (str[i] != 'z') {
+    c1[j] = str[i];
+    i++;
+    j++;
+  }
+  if (j == 1 && c1[0] == '-') {
+    c1[0] = '-';
+    c1[1] = '1';
+    j = 2;
+  }
+  if (j == 1 && c1[0] == '+') {
+    c1[0] = '+';
+    c1[1] = '1';
+    j = 2;
+  }
+  c1[j] = '\0';
+  ++i;
+  j = 0;
   if (str[i] != '=') {
     if (str[i] == '-') {
-      c1[j] = '+';
+      d1[j] = '+';
       j++;
       i++;
       while (str[i] != '=') {
-        c1[j] = str[i];
+        d1[j] = str[i];
         i++;
         j++;
       }
-      c1[j] = '\0';
+      d1[j] = '\0';
     } else if (str[i] =='+') {
-      c1[j] = '-';
+      d1[j] = '-';
       j++;
       i++;
       while (str[i] != '=') {
-        c1[j] = str[i];
+        d1[j] = str[i];
         i++;
         j++;
       }
-      c1[j] = '\0';
+      d1[j] = '\0';
     }
     i += 2;
   } else {
     i++;
     while (str[i] != '&') {
-      c1[j] = str[i];
+      d1[j] = str[i];
       i++;
       j++;
     }
-    c1[j] = '\0';
+    d1[j] = '\0';
   }
 
   ++i;
@@ -625,35 +661,53 @@ void splitValueThreeHiddensEquation(char str[]) {
   b2[j] = '\0';
   ++i;
   j = 0;
+  while (str[i] != 'z') {
+    c2[j] = str[i];
+    i++;
+    j++;
+  }
+  if (j == 1 && c2[0] == '-') {
+    c2[0] = '-';
+    c2[1] = '1';
+    j = 2;
+  }
+  if (j == 1 && c2[0] == '+') {
+    c2[0] = '+';
+    c2[1] = '1';
+    j = 2;
+  }
+  c2[j] = '\0';
+  ++i;
+  j = 0;
   if (str[i] != '=') {
     if (str[i] == '-') {
-      c2[j] = '+';
+      d2[j] = '+';
       j++;
       i++;
       while (str[i] != '=') {
-        c2[j] = str[i];
+        d2[j] = str[i];
         i++;
         j++;
       }
-      c2[j] = '\0';
+      d2[j] = '\0';
     } else if (str[i] =='+') {
-      c2[j] = '-';
+      d2[j] = '-';
       j++;
       i++;
       while (str[i] != '=') {
-        c2[j] = str[i];
+        d2[j] = str[i];
         i++;
         j++;
       }
-      c2[j] = '\0';
+      d2[j] = '\0';
     }
   } else {
     i++;
     while (str[i] != '\0') {
-      c2[j] = str[i];
+      d2[j] = str[i];
       i++;
       j++;
     }
   }
-  c2[j] = '\0';
+  d2[j] = '\0';
 }
