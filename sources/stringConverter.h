@@ -1,6 +1,14 @@
 char * numberToString(long double num) {
     static char output[50];
     snprintf(output, 50, "%Lf", num);
+    for(int i = strlen(output) - 1; i > -1; i--)
+        if (output[i] == '0')
+            output[i] = '\0';
+        else {
+            if (output[i] == '.')
+                output[i] = '\0';
+            break;
+        }
     return output;
 }
 
