@@ -8,7 +8,7 @@ int checkExpressionSyntax(char s[]) {
 	//-2  thieuToanTu // (5*6)(5-6)
 	//-3  thuaToanTu // 5**6
 	//-4  divZero // 5/0
-	//-5  _v4 6v_ 
+	//-5  _v4 6v_
 	//-6  ngoacRong // (5*8)*()/(5+4)
 	//-8  soThucSai // 5.*6.1
 	//-9  kyTuLa // 56a*8
@@ -44,5 +44,4 @@ int checkExpressionSyntax(char s[]) {
 		return -1;
 	}
 	return 1;
-  return 1;
 };

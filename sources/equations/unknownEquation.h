@@ -1,3 +1,10 @@
+void swap(long double * numberA, long double * numberB)
+{
+   *numberA = *numberA + *numberB;
+   *numberB = *numberA - *numberB;
+   *numberA = *numberA - *numberB;
+}
+
 char * twoHiddensEquation(char stA0[], char stB0[], char stC0[],
             char stA1[], char stB1[], char stC1[])
 {
@@ -28,9 +35,10 @@ char * twoHiddensEquation(char stA0[], char stB0[], char stC0[],
     swap(&a0, &b1);
 
     x = (a0 * c0) + (b0 * c1);
+    strcpy(s, "x = ");
     strcpy(s, numberToString(x));
     y = (a1 * c0) + (b1 * c1);
-    strcat(s, "______");
+    strcat(s, "\ny = ");
     strcat(s, numberToString(y));
 
     return s;
@@ -86,12 +94,13 @@ char * threeHiddensEquation(char sta0[], char stb0[], char stc0[], char std0[],
     swap(&x6, &x8);
 
     x = (x1 * d0) + (x2 * d1) + (x3 * d2);
+    strcpy(s, "x = ");
     strcpy(s, numberToString(x));
     y = (x4 * d0) + (x5 * d1) + (x6 * d2);
-    strcat(s, "______");
+    strcat(s, "\ny = ");
     strcat(s, numberToString(y));
     z = (x7 * d0) + (x8 * d1) + (x9 * d2);
-    strcat(s, "______");
+    strcat(s, "\nz = ");
     strcat(s, numberToString(z));
 
     return s;

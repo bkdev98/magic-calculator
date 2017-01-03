@@ -11,6 +11,7 @@ char * basicEquation(char strA[], char strB[]){
         strcpy(s, "infinitely many solutions");
     else {
         x = (b * (-1))/a;
+        strcpy(s, "x = ");
         strcpy(s, numberToString(x));
     }
     return s;
@@ -34,13 +35,15 @@ char * quadraticEquation(char strA[], char strB[], char strC[])
         strcpy(s, "no solution");
     else if (delta == 0){
         x1 = (-b + sqrt(delta)) / (2 * a);
+        strcpy(s, "x = ");
         strcpy(s, numberToString(x1));
     }
     else{
         x1 = (-b + sqrt(delta)) / (2 * a);
+        strcpy(s, "x(1) = ");
         strcpy(s, numberToString(x1));
         x2 = (-b + sqrt(delta)) / (2 * a);
-        strcat(s, "_____");
+        strcat(s, "\nx(2) = ");
         strcat(s, numberToString(x2));
     }
     return s;
@@ -63,32 +66,34 @@ char * cubicEquation(char strA[], char strB[], char strC[], char strD[])
     delta = (b*b - 3*a*c);
     k = (9*a*b*c - 2*b*b*b - 27*a*a*d) / (2 * sqrt(fabsl(delta*delta*delta)));
     if (delta > 0 ){
-        if (fabsl(k) <= 1){
+        if (fabsl(k) <= 1) {
             x1 = (2 * sqrt(delta) * cos(acos(k)/3) - b) / (3*a);
+            strcpy(s, "x(1) = ");
             strcpy(s, numberToString(x1));
             x2 = (2 * sqrt(delta) * cos(acos(k)/3 - (2*acos(-1)/3)) - b) / (3*a);
-            strcat(s, "_____");
+            strcat(s, "\nx(2) = ");
             strcat(s, numberToString(x2));
             x3 = (2 * sqrt(delta) * cos(acos(k)/3 + (2*acos(-1)/3)) - b) / (3*a);
-            strcat(s, "_____");
+            strcat(s, "\nx(3) = ");
             strcat(s, numberToString(x3));
 
         }
-        else{
+        else {
             x1 = (sqrt(delta)*fabsl(k) / (3*a*k))*(cbrt(fabsl(k) + sqrt(k*k-1)) + cbrt(fabsl(k) - sqrt(k*k-1))) - (b/(3*a));
+            strcpy(s, "x = ");
             strcpy(s, numberToString(x1));
 
         }
     }
-    else if (delta == 0){
+    else if (delta == 0) {
         x1 = ((b * -1) + cbrt(b*b*b - 27*a*a*d)) / (3*a);
+        strcpy(s, "x = ");
         strcpy(s, numberToString(x1));
-
     }
-    else{
+    else {
         x1 = (sqrt(fabsl(delta)) / (3*a))*(cbrt(k + sqrt(k*k+1)) + cbrt(k - sqrt(k*k+1))) - (b/(3*a));
+        strcpy(s, "x = ");
         strcpy(s, numberToString(x1));
-
     }
     return s;
 }
