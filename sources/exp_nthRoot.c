@@ -118,19 +118,9 @@ char * exp(char s[])
     return str;
 }
 //==============================================================================
-char * nthRoot ( char s[])
+char * nthRoot ( char str1[], char str2[])
 {
     static char str[100];
-    char str1[100], str2[100];
-    int j, tmpv;
-    /* tach 1 chuoi thanh 2 so */
-    for(j = 0; s[j] != ','; j++)
-        str1[j] = s[j];
-    if(s[++j] == ' ') j++;
-    tmpv = j;
-    for(int i = 0; i <= (strlen(s) - tmpv); i++, j++)
-        str2[i] = s[j];
-
     long double i = stringToNumber(str1),
                 i1 = stringToNumber(str2),
                 tmp;
