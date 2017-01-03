@@ -12,7 +12,36 @@ char * numberToString(long double num) {
     return output;
 }
 
-long double stringToNumber(char s[]) {
+int check(char s[]){
+    int check = 0, checkB = 0;
+    if (s[0] != '+' && s[0] != '-' && (s[0] < 48 || s[0] > 57))
+        return 0;
+    else if (s[1] == '.' && (s[0] == '-' || s[0] == '+' || s[0] < 48 || s[0] > 57))
+        return 0;
+    else {
+        if (s[0] == '+' || s[0] == '-')
+            for (int i = 1; i < strlen (s); i++){
+                if ( s[i] == '.')
+                    check += 1;
+                if ( (s[i] < 48 || s[i] > 57) && s[i] != '.')
+                    checkB += 1;
+            }
+        else
+            for (int i = 0; i < strlen (s); i++){
+                if ( s[i] == '.')
+                    check += 1;
+                if ( (s[i] < 48 || s[i] > 57) && s[i] != '.')
+                    checkB += 1;
+            }
+    }
+    if (check > 1 || checkB > 0)
+        return 0;
+    else
+        return 1;
+
+}
+long double stringToNumber(char s[],  int *result) {
+    *result = check(s);
     int i = 0;
     long double number = 0, tmp;
 
@@ -61,3 +90,4 @@ long double stringToNumber(char s[]) {
 
     return number;
 }
+
