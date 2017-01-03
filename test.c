@@ -2,6 +2,25 @@
 #include <string.h>
 #include <math.h>
 
+char * numberToString(long double num);
+long double stringToNumber(char s[]);
+char *bigMod (char st1[], char st2[]);
+char *bigAdd (char st1[], char st2[]);
+char *bigSub (char st1[], char st2[]);
+char *bigMul (char st1[], char st2[]);
+char *bigDiv (char st1[], char st2[]);
+
+
+int main(int argc, char const *argv[]){
+	char st1[100], st2[100];
+	scanf("%s%s", st1, st2);
+	printf("(+) = %s\n", bigAdd(st1, st2));
+	printf("(-) = %s\n", bigSub(st1, st2));
+	printf("(*) = %s\n", bigMul(st1, st2));
+	printf("(/) = %s\n", bigDiv(st1, st2));
+	printf("(M) = %s\n", bigMod(st1, st2));
+	return 0;
+}
 char *bigAdd (char st1[], char st2[]) {
   char static stRes[1000];
   long double a, b;
@@ -95,16 +114,3 @@ long double stringToNumber(char s[]){
 
     return number;
 }
-/*
-int main(void) {
-  char st1[1000], st2[1000];
-  scanf("%s", st1);
-  scanf("%s", st2);
-  printf("(+) = %s\n", bigAdd(st1, st2));
-  printf("(-) = %s\n", bigSub(st1, st2));
-  printf("(*) = %s\n", bigMul(st1, st2));
-  printf("(/) = %s\n", bigDiv(st1, st2));
-  printf("(M) = %s\n", bigMod(st1, st2));
-  return 0;
-}
-*/
