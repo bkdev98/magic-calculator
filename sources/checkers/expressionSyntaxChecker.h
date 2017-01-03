@@ -4,44 +4,45 @@ int checkExpressionSyntax(char s[]) {
 	char operand[6] = "+-*/^v";
 	char func[5] = "sctlL";
 	int bracket = 0;
-	//-1  thieu ngoac
-	//-2  thieuToanTu // (5*6)(5-6)
-	//-3  thuaToanTu // 5**6
-	//-4  divZero // 5/0
-	//-5  _v4 6v_
-	//-6  ngoacRong // (5*8)*()/(5+4)
-	//-8  soThucSai // 5.*6.1
-	//-9  kyTuLa // 56a*8
+	//-11  thieu ngoac
+	//-12  thieuToanTu // (5*6)(5-6)
+	//-13  thuaToanTu // 5**6
+	//-14  divZero // 5/0
+	//-15  _v4 6v_
+	//-16  ngoacRong // (5*8)*()/(5+4)
+	//-18  soThucSai // 5.*6.1
+	//-19  kyTuLa // 56a*8
+
 	int i, leng;
 	leng = strlen(s);
 	for (i = 0; i < leng; i++){
 		if (strchr(symbol, s[i]) == NULL){
-			return -9;
+			return -19;
 		}
 		if (s[i] == '(' || s[i] == ')'){
 			bracket++;
 		}
 		if (s[i] == '(' && s[i+1] == ')'){
-			return -6;
+			return -16;
 		}
 		if (s[i] == '/' && s[i+1] == '0'){
-			return -4;
+			return -14;
 		}
 		if ((s[i] == '.') && (strchr(digits, s[i+1]) != NULL || strchr(digits, s[i-1]) != NULL)) {
-			return -8;
+			return -18;
 		}
 		if (s[i] == ')' && (s[i+1] == '(' || strchr(func, s[i+1]) != NULL) && (i < leng - 1)) {
-			return -2;
+			return -12;
 		}
 		if ((s[i]  == 'v') && (strchr(digits, s[i+1]) == NULL || strchr(digits, s[i-1])== NULL)) {
-			return -5;
+			return -15;
 		}
 		if ((strchr(operand, s[i])) != NULL && (strchr(operand, s[i+1])) != NULL){
-			return - 3;
+			return - 13;
 		}
 	}
 	if (bracket % 2 != 0){
-		return -1;
+		return -11;
 	}
 	return 1;
 };

@@ -48,15 +48,30 @@ void showHelp() {
 
 void printError(int n) {
   switch (n) {
+    case -19: printf("Expression Calculator: Syntax error: Unaccepted symbol!\n");
+            break;
+    case -18: printf("Expression Calculator: Wrong number syntax!\n");
+            break;
+    case -16: printf("Expression Calculator: Syntax error: Empty Bracklet!\n");
+            break;
+    case -15: printf("Expression Calculator: Syntax error!\n");
+            break;
+    case -14: printf("Expression Calculator: Math error: Can't not div Zero!\n");
+            break;
+    case -13: printf("Expression Calculator: Syntax error: Operand error!\n");
+            break;
+    case -12: printf("Expression Calculator: Syntax error: Operand missing!\n");
+            break;
+    case -11: printf("Expression Calculator: Syntax error: Bracklet missing!\n");
+            break;
+
     case -5: printf("Base Converter: Input & output base must be in [2; 16]. Please try again!\n");
             break;
     case -4: printf("Base Converter: Your input number is not in this input base. Please try again!\n");
             break;
-    case -3: printf("Base Converter: Syntax error. Please try again!\n");
+    case -3: printf("Base Converter: Syntax must be (baseA)numberInBaseAto(baseB). Please try again!\n");
             break;
-    case -2: printf("Equation Calculator: Syntax error. Please try again!\n");
-            break;
-    case -1: printf("Expression Calculator: Syntax error. Please try again!\n");
+    case -2: printf("Equation Calculator: Syntax error. Please try again, for more infos, type -h!\n");
             break;
   }
 }

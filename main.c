@@ -31,18 +31,6 @@ int main(void) {
 }
 
 int readLineMagic() {
-  // return:
-  // -5: base not valid
-  // -4: input is not number in base.
-  // -3: wrong converting base spell.
-  // -2: wrong equation spell.
-  // -1: wrong expression spell.
-  // 1: experssion.
-  // 2: equation.
-  // 3: converting base.
-  // 4: show help
-  // 5: play credit
-  // 6: exit
   printf("$ ~ ");
   scanf("%s", stringLine);
   if (strlen(stringLine) == 2) {
@@ -65,15 +53,31 @@ int readLineMagic() {
 void playMagic() {
   int typeLine = readLineMagic();
   switch(typeLine) {
-    case -5: printError(-5);
+    case -19: printError(typeLine);
             break;
-    case -4: printError(-4);
+    case -18: printError(typeLine);
             break;
-    case -3: printError(-3);
+    case -16: printError(typeLine);
             break;
-    case -2: printError(-2);
+    case -15: printError(typeLine);
             break;
-    case -1: printError(-1);
+    case -14: printError(typeLine);
+            break;
+    case -13: printError(typeLine);
+            break;
+    case -12: printError(typeLine);
+            break;
+    case -11: printError(typeLine);
+            break;
+    case -5: printError(typeLine);
+            break;
+    case -4: printError(typeLine);
+            break;
+    case -3: printError(typeLine);
+            break;
+    case -2: printError(typeLine);
+            break;
+    case -1: printError(typeLine);
             break;
     case 1: printf("calculateExpression\n");
             //  calculateExpression(stringLine);
