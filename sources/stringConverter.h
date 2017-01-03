@@ -40,8 +40,59 @@ int check(char s[]){
         return 1;
 
 }
-long double stringToNumber(char s[],  int *result) {
+
+long double stringToNumber_2(char s[],  int *result) {
     *result = check(s);
+    int i = 0;
+    long double number = 0, tmp;
+
+    while (i < strlen(s)){
+        if (s[i] == '.')
+            break;
+        i++;
+    }
+    if ((s[0] == '-' || s[0] == '+') && i != strlen(s)){
+        tmp = 1 / pow(10, (strlen(s) - i - 1));
+        for (int j = (strlen(s) - 1); j > 0; j--)
+            if (s[j] != '.'){
+                number += (s[j] - 48) * tmp;
+                tmp *= 10;
+            }
+        if(s[0] == '-') number *= -1;
+    }
+
+    else if ( i != strlen(s)){
+        tmp = 1 / pow(10, (strlen(s) - i) - 1);
+        for (int j = (strlen(s) - 1); j > -1; j--)
+            if (s[j] != '.'){
+                number += (s[j] - 48) * tmp;
+                tmp *= 10;
+            }
+    }
+
+    else if ((s[0] == '-' || s[0] == '+') && i == strlen(s)){
+        tmp = 1;
+        for (int j = (strlen(s) - 1); j > 0; j--)
+            {
+                number += (s[j] - 48) * tmp;
+                tmp *= 10;
+            }
+        if(s[0] == '-') number *= -1;
+    }
+
+    else if ( i == strlen(s)){
+        tmp = 1;
+        for (int j = (strlen(s) - 1); j > -1; j--)
+            {
+                number += (s[j] - 48) * tmp;
+                tmp *= 10;
+            }
+    }
+
+    return number;
+}
+
+long double stringToNumber(char s[]) {
     int i = 0;
     long double number = 0, tmp;
 
