@@ -1,4 +1,4 @@
-int check(char s[]){
+int checkErr(char s[]){
     int check = 0, checkB = 0;
     if (s[0] != '+' && s[0] != '-' && (s[0] < 48 || s[0] > 57))
         return 0;
@@ -70,7 +70,7 @@ char * twoHiddensEquation(char stA0[], char stB0[], char stC0[],
     strcat(s, "\ny = ");
     strcat(s, numberToString(y));
 
-    if(check(numberToString(x)) == 0 || check(numberToString(y)) == 0)
+    if(checkErr(numberToString(x)) == 0 || checkErr(numberToString(y)) == 0)
         strcpy(s, "No-Solution");
     return s;
 }
@@ -134,7 +134,7 @@ char * threeHiddensEquation(char sta0[], char stb0[], char stc0[], char std0[],
     strcat(s, "\nz = ");
     strcat(s, numberToString(z));
 
-    if(check(numberToString(x)) == 0 || check(numberToString(y)) == 0 || check(numberToString(z)) == 0)
+    if(checkErr(numberToString(x)) == 0 || checkErr(numberToString(y)) == 0 || checkErr(numberToString(z)) == 0)
         strcpy(s, "No-Solution");
 
     return s;
