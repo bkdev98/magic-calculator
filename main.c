@@ -53,8 +53,8 @@ void showHelp() {
 
 void playMagicMode() {
   printf("MAGIC CALCULATOR\n");
-  printf("Current Mode: Deg | Magic\n");
-  printf("Type -h for help, or -e to exit.\n");
+  //  printf("Current Mode: Deg | Magic\n");
+  printf("Put things you want to solve, or -h for help, -e to exit.\n");
 }
 
 /*
