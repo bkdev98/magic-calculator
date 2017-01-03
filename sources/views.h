@@ -25,11 +25,11 @@ void showHelp() {
   printf("************************************\n");
   printf("With MAGIC CALCULATOR, you can: \n");
   printf(">   Calculate the Value of Expression.\n");
-  printf("        Example 1: 21+69\n");
+  printf("        Example 1: 2.1+6.9\n");
   printf("        Example 2: (21+69)*2\n");
-  printf("        Example 3: 9/(1+2)*sqrt(16)-sin(90)\n");
+  printf("        Example 3: sqrt(16)+2^3\n");
   printf("    Supported Operators: \n");
-  printf("        +, -, *, /, m, ^, sin, cos, tan, log, ln, sqrt.\n");
+  printf("        +, -, *, /, ^, r, sin, cos, tan, log, ln, sqrt, cbrt.\n");
   printf(">   Solve Basic/Quadratic/Cubic Equation.\n");
   printf("        Example 1: 6x-9=0\n");
   printf("        Example 2: -x^2+2x^2=4\n");
@@ -41,6 +41,7 @@ void showHelp() {
   printf("        Example 1: (10)69to(2)\n");
   printf("        Example 2: (2)100011010to(16)\n");
   printf("        Example 3: (8)1637to(4)\n");
+  printf("Switch between Rad and Deg mode: type -m\n");
   printf("View Credit: type -c\n");
   printf("Exit Program: type -e\n");
   printf("************************************\n");

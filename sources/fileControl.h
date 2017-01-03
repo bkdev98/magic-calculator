@@ -13,7 +13,7 @@ void saveValue(int value) {
 void loadValue() {
     FILE *f = fopen("data.mcal", "r");
     if (f != NULL) {
-      fscanf(f, "%d", &ioMode);
+      fscanf(f, "%d", &trigonometricMode);
     } else {
       FILE *f = fopen("data.mcal", "w");
       fprintf(f, "0");

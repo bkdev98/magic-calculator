@@ -1,6 +1,6 @@
 int checkExpressionSyntax(char s[]) {
   char digits[10] = "0123456789";
-	char symbol[24] = "0123456789+-*/^vsctlL().";
+	char symbol[100] = "0123456789+-*/^%vsincostanloglnsqrtcbrt().";
 	char operand[6] = "+-*/^v";
 	char func[5] = "sctlL";
 	int bracket = 0;
@@ -28,13 +28,13 @@ int checkExpressionSyntax(char s[]) {
 		if (s[i] == '/' && s[i+1] == '0'){
 			return -14;
 		}
-		if ((s[i] == '.') && (strchr(digits, s[i+1]) != NULL || strchr(digits, s[i-1]) != NULL)) {
+		if ((s[i] == '.') && (strchr(digits, s[i+1]) == NULL || strchr(digits, s[i-1]) == NULL)) {
 			return -18;
 		}
 		if (s[i] == ')' && (s[i+1] == '(' || strchr(func, s[i+1]) != NULL) && (i < leng - 1)) {
 			return -12;
 		}
-		if ((s[i]  == 'r') && (strchr(digits, s[i+1]) == NULL || strchr(digits, s[i-1])== NULL)) {
+		if (((s[i]  == 'r') && (s[i+1] != 't')) && (strchr(digits, s[i+1]) == NULL || strchr(digits, s[i-1])== NULL)) {
 			return -15;
 		}
 		if ((strchr(operand, s[i])) != NULL && (strchr(operand, s[i+1])) != NULL){

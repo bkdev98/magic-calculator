@@ -6,22 +6,29 @@
 
 char stringLine[6969];
 int isStop = 0;
-//  char trigonometricMode[10];
-//  #include "sources/fileControl.h"
+int trigonometricMode = 0;
+
 #include "sources/stringConverter.h"
 #include "sources/syntaxChecker.h"
 #include "sources/equationCalculator.h"
 #include "sources/baseConverter.h"
 #include "sources/views.h"
+#include "sources/expressionCalculator.h"
+#include "sources/fileControl.h"
 
 int readLineMagic();
 void playMagic();
 void stopMagic();
+void changeMode();
 
 int main(void) {
   printHeader();
   do {
-    //  loadValue();
+    loadValue();
+    if (trigonometricMode == 0)
+      printf("Current Mode: Deg. Type -m to switch.\n");
+    else
+      printf("Current Mode: Rad. Type -m to switch.\n");
     playMagic();
     if (isStop)
       sayGoodbye();
@@ -40,6 +47,8 @@ int readLineMagic() {
       return 5;
     if (stringLine[0] == '-' && stringLine[1] == 'e')
       return 6;
+    if (stringLine[0] == '-' && stringLine[1] == 'm')
+      return 7;
   }
   for (int i = 0; i <= strlen(stringLine) - 1; i++) {
     if (stringLine[i] == 't' && stringLine[i+1] == 'o')
@@ -79,8 +88,10 @@ void playMagic() {
             break;
     case -1: printError(typeLine);
             break;
-    case 1: printf("calculateExpression\n");
-            //  calculateExpression(stringLine);
+    case 1: if (trigonometricMode == 0)
+              solveExpressionDeg(stringLine);
+            else
+              solveExpressionRad(stringLine);
             break;
     case 2: solveEquation(stringLine);
             break;
@@ -92,9 +103,18 @@ void playMagic() {
             break;
     case 6: stopMagic();
             break;
+    case 7: changeMode();
+            break;
   }
 }
 
 void stopMagic() {
   isStop = 1;
+}
+
+void changeMode() {
+  if (trigonometricMode == 0)
+    saveValue(1);
+  else
+    saveValue(0);
 }
