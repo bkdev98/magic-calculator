@@ -34,21 +34,21 @@ int main (int argc, char const *argv[]){
 	return 0;
 }
 
-char* caculateInfix (char infix[]){
+char* caculate_infix (char infix[]){
 
 	Node *Operands = creatNode(" "); //stack chua toan hang
 	Node *Operators = creatNode(" "); //stack chua toan tu
 	int leng = strlen(infix);
 	int i, begin = 0, j;
-	int opearatorPriority; // muc do uu tien cua toan tu moi doc vao
+	int opearatorPriority; // muc do uu tien cua toan tu moi doc vao 
 	int headOpearatorPriority; // muc do uu tien cua toan tu tren dinh stack
 	char *str, headOperator, CharToString[1];
 	char *popOperandA, *popOperandB, *popOperator;
-	char function; //sin cos tan ...
+	char function, *funcName; //sin cos tan ...
 	char *result; // result of solveTwoOperand
 
 	for (i = 0; i < leng; i++){
-		if (!isOperator(infix[i])){
+		if (!isOperator(infix[i]) && !isFuction(infix[i])){
 			str = getNumber (&i, infix);
 			push (str, &Operands);
 		}
@@ -61,30 +61,29 @@ char* caculateInfix (char infix[]){
 				while (*popOperator != '('){
 				 	popOperandA = pop(&Operands);
 				 	popOperandB = pop(&Operands);
-				 	result = solveTwoOperand(popOperator[0], popOperandA, popOperandB);
+				 	result = solveTwoOperand(popOperator[0], popOperandB, popOperandA);
 				 	push(result, &Operands);
 				 	popOperator = pop(&Operators);
 				 }
 			}
 			else if (isFuction(infix[i])) { // sin cos tan log ln sqrt sqr
-				CharToString[0] = infix[i]; // chuyen ky tu char sang string
+				funcName = getFuncName(&i, infix); // lay ten ham
 				//tach phan bieu thuc ben trong ham toan hoc
 				j = i + 2;
+				str = malloc(sizeof(char)*100);
 				while (!isOperator(infix[j])){
 					str[j - (i + 2)] = infix[j];
 					j++;
 				}
 				str[j - (i + 2)] = '\0';
-				if (isExistFunc(str)){
-					caculateInfix(str);
-				}
-				else{
-					result = solveFunc(CharToString[0], str);
+				printf("%s\n", str);
+				
+					result = solveFunc(funcName, str);
 					push (result, &Operands);
-				}
+				
 				i = j;
 				continue;
-
+				
 			}
 			else if (isEmpty(&Operators)){
 				CharToString[0] = infix[i];
@@ -92,7 +91,7 @@ char* caculateInfix (char infix[]){
 			}
 			else {
 				opearatorPriority = priority(infix[i]);
-
+				
 				headOperator = get (&Operators);
 				headOpearatorPriority = priority(headOperator);
 
@@ -105,9 +104,9 @@ char* caculateInfix (char infix[]){
 					popOperator = pop(&Operators);
 				 	popOperandA = pop(&Operands);
 				 	popOperandB = pop(&Operands);
-				 	result = solveTwoOperand(popOperator[0], popOperandA, popOperandB);
+				 	result = solveTwoOperand(popOperator[0], popOperandB, popOperandA);
 				 	push(result, &Operands);
-
+				 	
 				 	CharToString[0] = infix[i]; // chuyen ky tu char sang string
 					push (CharToString, &Operators); // day toan tu moi doc vao stack
 				}
@@ -120,35 +119,38 @@ char* caculateInfix (char infix[]){
 		popOperator = pop(&Operators);
 		popOperandA = pop(&Operands);
 		popOperandB = pop(&Operands);
-		result = solveTwoOperand(popOperator[0], popOperandA, popOperandB);
+		result = solveTwoOperand(popOperator[0], popOperandB, popOperandA);
 		push(result, &Operands);
 	}
 	//tra ve ket qua
 	return Operands->data;
 }
 
-char* solveFunc (char function, char operand[]){
+char* solveFunc (char function[], char operand[]){
 	char *result;
-	switch (function){
-		case 's': //sin()
+		printf("%s\n", function);
+		printf("%s\n", operand);
+		if (strcmp("sin", function) == 0){
 			result = dSin(operand);
-			break;
-		case 'c': //cos()
+		}
+		else if (strcmp("cos", function) == 0){
 			result = dCoSin(operand);
-			break;
-		case 't': //tan()
+		}
+		else if (strcmp("tan", function) == 0){
 			result = dTan(operand);
-			break;
-		case 'l': //ln()
+		}
+		else if (strcmp("log", function) == 0){
 			result = logarit(operand);
-			break;
-		case 'L': //log()
+		}
+		else if (strcmp("ln", function) == 0){
 			result = logn(operand);
-			break;
-		case 'v': //sqrt()
+		}
+		else if (strcmp("sqrt", function) == 0){
 			result = sqRt(operand);
-			break;
-	}
+		}
+		else if (strcmp("cbrt", function) == 0){
+			result = cbRt(operand);
+		}
 	return result;
 }
 
@@ -156,7 +158,7 @@ int isExistFunc (char str[]){
 	int leng = strlen(str);
 	int i;
 	for (i = 0; i < leng; i++){
-		if (isFuction(str[i])){
+		if (isFuction(str[i]) || isOperator(str[i])){
 			return 1;
 		}
 	}
@@ -176,9 +178,19 @@ char* solveTwoOperand (char operator, char operandA[], char operandB[]){
 			result = bigMul(operandA, operandB);
 			break;
 		case '/' :
-			result = bigDiv(operandA, operandB);
+			if (strcmp("0", operandB) == 0){
+				printf("Division by zero error");
+			}
+			else {
+				result = bigDiv(operandA, operandB);
+			}
+			break;
+		case '%' :
+			result = bigMod(operandA, operandB);
 			break;
 		case '^' :
+			break;
+		case 'r' :
 			break;
 	};
 	return result;
@@ -196,9 +208,20 @@ char* getNumber (int* begin, char str[]){
 	*begin = *begin + count - 1;
 	return strnum;
 }
-
+char* getFuncName (int *begin, char str[]){
+	int i = *begin, count = 0, leng = strlen(str);
+	char *strname = malloc(sizeof(char)*5);
+	while (str[i] != '(' && (i < leng)){
+		strname[count] = str[i];
+		count++;
+		i++;
+	}
+	strname[count] = '\0';
+	*begin = *begin + count - 1;
+	return strname;
+}
 int priority (char c){
-	if (c == '*' || c == '/' || c =='^'){
+	if (c == '*' || c == '/' || c =='^' || c == 'r' || c == '%'){
 		return 2;
 	}
 	else if (c == '+' || c == '-'){
@@ -207,14 +230,13 @@ int priority (char c){
 	else if (c == '('){
 		return 0;
 	}
-	else return -1;
 }
 
 int isOperator (char c){
-	if (c == '+' || c == '-' || c == '*' || c == '/' || c == '(' || c == ')' || c =='^'){
+	if (c == '%' || c == '+' || c == '-' || c == '*' || c == '/' || c == '(' || c == ')' || c =='^' || c == 'r'){
 		return 1;
 	}
-	else if (c == 's' || c == 'c' || c == 't' || c == 'L' || c == 'l' || c == 'v'){
+	else if (c == 's' || c == 'c' || c == 't' || c == 'l'){
 		return 1;
 	}
 	else {
@@ -223,7 +245,7 @@ int isOperator (char c){
 }
 
 int isFuction(char c){
-	char funcList[7] = "sctlLv";
+	char funcList[4] = "sctl";
 	if (strchr(funcList, c) != NULL){
 		return 1;
 	}
@@ -256,7 +278,7 @@ Node* creatNode(char str[]){
 	}
 	else {
 		p->next = NULL;
-		p->data = malloc(sizeof(char)*leng);
+		p->data = malloc(sizeof(char)*leng); 
 		strcpy((*p).data, str);
 	}
 	return p;
