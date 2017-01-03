@@ -2,10 +2,10 @@
 Final project for Fcode C Training.
 
 **Magic Calculator** is a C program that can solve all operations by one line.
-[![Image](http://i.imgur.com/0xyF1CU.png)]
+![Image](http://i.imgur.com/0xyF1CU.png)
 
 # Guide
-[![Image](http://i.imgur.com/jtRPDQy.png)]
+![Image](http://i.imgur.com/jtRPDQy.png)
 
 # Requirement
 - GCC 5.4.0 and up.
