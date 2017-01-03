@@ -3,15 +3,15 @@
 #include <string.h>
 #include <time.h>
 #include <math.h>
-#include "sources/stringConverter.h"
-#include "sources/syntaxChecker.h"
-#include "sources/baseConverter.h"
-#include "sources/equationCalculator.h"
 
 char stringLine[6969];
 int isStop = 0;
 //  char trigonometricMode[10];
 //  #include "sources/fileControl.h"
+#include "sources/stringConverter.h"
+#include "sources/syntaxChecker.h"
+#include "sources/equationCalculator.h"
+#include "sources/baseConverter.h"
 #include "sources/views.h"
 
 int readLineMagic();

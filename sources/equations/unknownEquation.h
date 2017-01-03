@@ -48,7 +48,7 @@ char * twoHiddensEquation(char stA0[], char stB0[], char stC0[],
     static char s[100];
     if ((a0 == 0 && b0 == 0)||(a1 == 0 && b1 == 0))
     {
-        strcpy(s, "No-Solution");
+        strcpy(s, "No Solution!");
         return s;
     }
     long double det, x, y;
@@ -71,7 +71,7 @@ char * twoHiddensEquation(char stA0[], char stB0[], char stC0[],
     strcat(s, numberToString(y));
 
     if(checkErr(numberToString(x)) == 0 || checkErr(numberToString(y)) == 0)
-        strcpy(s, "No-Solution");
+        strcpy(s, "No Solution!");
     return s;
 }
 
@@ -99,7 +99,7 @@ char * threeHiddensEquation(char sta0[], char stb0[], char stc0[], char std0[],
         (a1 == 0 && b1 == 0 && c1 == 0)||
         (a2 == 0 && b2 == 0 && c2 == 0))
     {
-        strcpy(s, "No-Solution");
+        strcpy(s, "No Solution!");
         return s;
     }
     long double det,
@@ -135,7 +135,7 @@ char * threeHiddensEquation(char sta0[], char stb0[], char stc0[], char std0[],
     strcat(s, numberToString(z));
 
     if(checkErr(numberToString(x)) == 0 || checkErr(numberToString(y)) == 0 || checkErr(numberToString(z)) == 0)
-        strcpy(s, "No-Solution");
+        strcpy(s, "No Solution!");
 
     return s;
 }

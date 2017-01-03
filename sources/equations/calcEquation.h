@@ -6,9 +6,9 @@ char * basicEquation(char strA[], char strB[]){
     b = stringToNumber(strB);
 
     if (a == 0 && b != 0)
-        strcpy(s, "no solution");
+        strcpy(s, "No Solution!");
     else if (a == 0 && b == 0)
-        strcpy(s, "infinitely many solutions");
+        strcpy(s, "Infinitely Many Solutions!");
     else {
         x = (b * (-1))/a;
         strcpy(s, "x = ");
@@ -32,7 +32,7 @@ char * quadraticEquation(char strA[], char strB[], char strC[])
     }
     delta = b*b - 4*a*c;
     if (delta < 0)
-        strcpy(s, "no solution");
+        strcpy(s, "No Solution!");
     else if (delta == 0){
         x1 = (-b + sqrt(delta)) / (2 * a);
         strcpy(s, "x = ");

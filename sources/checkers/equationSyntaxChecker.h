@@ -1,3 +1,5 @@
+#include "splitValue.h"
+
 int typeEquation(char s[]) {
   // return:
   // 0: unknown;
@@ -28,6 +30,35 @@ int typeEquation(char s[]) {
   return 0;
 };
 
+int rightNumber(char s[]){
+    int check = 0, checkB = 0;
+    if (s[0] != '+' && s[0] != '-' && (s[0] < 48 || s[0] > 57))
+        return 0;
+    else if (s[1] == '.' && (s[0] == '-' || s[0] == '+' || s[0] < 48 || s[0] > 57))
+        return 0;
+    else {
+        if (s[0] == '+' || s[0] == '-')
+            for (int i = 1; i < strlen (s); i++){
+                if ( s[i] == '.')
+                    check += 1;
+                if ( (s[i] < 48 || s[i] > 57) && s[i] != '.')
+                    checkB += 1;
+            }
+        else
+            for (int i = 0; i < strlen (s); i++){
+                if ( s[i] == '.')
+                    check += 1;
+                if ( (s[i] < 48 || s[i] > 57) && s[i] != '.')
+                    checkB += 1;
+            }
+    }
+    if (check > 1 || checkB > 0)
+        return 0;
+    else
+        return 1;
+
+}
+
 int checkBasicEquationSyntax(char s[]) {
   // return:
   // -2: syntaxError
@@ -54,6 +85,9 @@ int checkBasicEquationSyntax(char s[]) {
     }
   }
   if (checkX == 0 || checkEqual == 0)
+    return -2;
+  splitValueBasicEquation(stringLine);
+  if (rightNumber(a0) == 0 || rightNumber(b0) == 0)
     return -2;
   return 2;
 }
@@ -87,6 +121,9 @@ int checkQuadraticEquationSyntax(char s[]) {
     }
   }
   if (checkEqual == 0)
+    return -2;
+  splitValueQuadraticEquation(stringLine);
+  if (rightNumber(a0) == 0 || rightNumber(b0) == 0 || rightNumber(c0) == 0)
     return -2;
   return 2;
 }
@@ -124,6 +161,9 @@ int checkCubicEquationSyntax(char s[]) {
     }
   }
   if (checkEqual == 0)
+    return -2;
+  splitValueCubicEquation(stringLine);
+  if (rightNumber(a0) == 0 || rightNumber(b0) == 0 || rightNumber(c0) == 0 || rightNumber(d0) == 0)
     return -2;
   return 2;
 }
@@ -183,6 +223,10 @@ int checkTwoHiddensEquationSyntax(char s[]) {
   }
 
   if (checkEqual != 2)
+    return -2;
+
+  splitValueTwoHiddensEquation(stringLine);
+  if (rightNumber(a0) == 0 || rightNumber(b0) == 0 || rightNumber(c0) == 0 || rightNumber(a1) == 0 || rightNumber(b1) == 0 || rightNumber(c1) == 0)
     return -2;
   return 2;
 }
@@ -280,6 +324,10 @@ int checkThreeHiddensEquationsSyntax(char s[]) {
     }
   }
   if (checkEqual != 3)
+    return -2;
+
+  splitValueThreeHiddensEquation(stringLine);
+  if (rightNumber(a0) == 0 || rightNumber(b0) == 0 || rightNumber(c0) == 0 || rightNumber(a1) == 0 || rightNumber(b1) == 0 || rightNumber(c1) == 0 || rightNumber(a2) == 0 || rightNumber(b2) == 0 || rightNumber(c2) == 0)
     return -2;
   return 2;
 }
