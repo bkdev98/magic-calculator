@@ -36,7 +36,7 @@ char * twoHiddensEquation(char stA0[], char stB0[], char stC0[],
 
     x = (a0 * c0) + (b0 * c1);
     strcpy(s, "x = ");
-    strcpy(s, numberToString(x));
+    strcat(s, numberToString(x));
     y = (a1 * c0) + (b1 * c1);
     strcat(s, "\ny = ");
     strcat(s, numberToString(y));
@@ -95,7 +95,7 @@ char * threeHiddensEquation(char sta0[], char stb0[], char stc0[], char std0[],
 
     x = (x1 * d0) + (x2 * d1) + (x3 * d2);
     strcpy(s, "x = ");
-    strcpy(s, numberToString(x));
+    strcat(s, numberToString(x));
     y = (x4 * d0) + (x5 * d1) + (x6 * d2);
     strcat(s, "\ny = ");
     strcat(s, numberToString(y));
