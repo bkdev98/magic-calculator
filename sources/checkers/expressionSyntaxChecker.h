@@ -34,7 +34,7 @@ int checkExpressionSyntax(char s[]) {
 		if (s[i] == ')' && (s[i+1] == '(' || strchr(func, s[i+1]) != NULL) && (i < leng - 1)) {
 			return -12;
 		}
-		if ((s[i]  == 'v') && (strchr(digits, s[i+1]) == NULL || strchr(digits, s[i-1])== NULL)) {
+		if ((s[i]  == 'r') && (strchr(digits, s[i+1]) == NULL || strchr(digits, s[i-1])== NULL)) {
 			return -15;
 		}
 		if ((strchr(operand, s[i])) != NULL && (strchr(operand, s[i+1])) != NULL){
