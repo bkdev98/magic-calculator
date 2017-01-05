@@ -15,6 +15,7 @@ char* caculateInfixRad (char infix[]); // tinh bieu thuc trung to
 int priority (char c); // xac dinh muc do uu tien cua toan tu
 int isOperator (char c); // kiem tra xem co phai la toan tu hay khong
 char* getNumber (int* begin, char str[]); // tach so ra tu xau
+char* getNegativeNumber (int* begin, char str[]); // lay so am
 char* solveTwoOperand (char opearator, char operandA[], char operandB[]);
 int isFuction (char c);
 char* solveFuncDeg (char function[], char operand[]);
@@ -51,7 +52,13 @@ char* caculateInfixDeg (char infix[]){
 		}
 		else {
 			if (infix[i] == '('){
-				push ("(", &Operators);
+				if (infix[i+1] == '-'){
+					str = getNegativeNumber (&i, infix);
+					push (str, &Operands);
+				}
+				else{
+					push ("(", &Operators);
+				}
 			}
 			else if (infix[i] == ')') {
 				popOperator = pop(&Operators);
@@ -143,7 +150,14 @@ char* caculateInfixRad (char infix[]){
 		}
 		else {
 			if (infix[i] == '('){
-				push ("(", &Operators);
+				if (infix[i+1] == '-'){
+					str = getNegativeNumber (&i, infix);
+					push (str, &Operands);
+					continue;
+				}
+				else{
+					push ("(", &Operators);
+				}
 			}
 			else if (infix[i] == ')') {
 				popOperator = pop(&Operators);
@@ -327,6 +341,23 @@ char* getNumber (int* begin, char str[]){
 	*begin = *begin + count - 1;
 	return strnum;
 }
+
+char* getNegativeNumber (int* begin, char str[]){
+	int i = *begin + 1, count = 0, leng = strlen(str);
+	char *strnum = malloc(sizeof(char)*100);
+	strnum[0] = str[i]; //lay dau am
+	count++;
+	i++;
+	while (!isOperator(str[i]) && (i < leng)){
+		strnum[count] = str[i];
+		count++;
+		i++;
+	}
+	strnum[count] = '\0';
+	*begin = *begin + count + 1;
+	return strnum;
+}
+
 char* getFuncName (int *begin, char str[]){
 	int i = *begin, count = 0, leng = strlen(str);
 	char *strname = malloc(sizeof(char)*5);
@@ -341,13 +372,16 @@ char* getFuncName (int *begin, char str[]){
 }
 
 int priority (char c){
-	if (c == '*' || c == '/' || c =='^' || c == 'r' || c == '%'){
+	if (c =='^' || c == 'r'){
+		return 3;
+	}
+	else if (c == '*' || c == '/' || c == '%'){
 		return 2;
 	}
 	else if (c == '+' || c == '-'){
 		return 1;
 	}
-	else {
+	else if (c == '('){
 		return 0;
 	}
 }
