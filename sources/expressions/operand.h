@@ -141,7 +141,7 @@ char * sqRt(char s[])
     long double i = stringToNumber(s);
     if (i < 0)
     {
-        strcpy(str, "MATH ERROR");
+        strcpy(str, "No Solution!");
         return str;
     }
     strcpy(str, numberToString(sqrt(i)));
@@ -169,7 +169,7 @@ char * Exp(char str1[], char str2[])
     /* bat dau tinh */
     if (i == 0 && i1 < 0)
     {
-        strcpy(str, "MATH ERROR");
+        strcpy(str, "No Solution!");
         return str;
     }
     else
@@ -194,7 +194,7 @@ char * Exp(char str1[], char str2[])
             }
             else if ( fmod( test_i1, 2 ) != 0 ) // so le
             {
-                strcpy(str, "MATH ERROR");
+                strcpy(str, "No Solution!");
                 return str;
             }
             else if ( fmod( test_i1, 4 ) != 0) // so le bac 2
@@ -218,7 +218,7 @@ char * nthRoot ( char str1[], char str2[])
     /* bat dau tinh */
     if (i1 == 0 || (i == 0 && i1 < 0))
     {
-        strcpy(str, "MATH ERROR");
+        strcpy(str, "No Solution!");
         return str;
     }
     else if ( i1 > 0)
@@ -238,7 +238,7 @@ char * nthRoot ( char str1[], char str2[])
             {
                 if ( str2[strlen(str2) - 1] % 2 == 0)
                 {
-                    strcpy(str, "MATH ERROR");
+                    strcpy(str, "No Solution!");
                     return str;
                 }
                 else tmp = pow( i, (1 / i1) ) * (-1);
@@ -249,7 +249,7 @@ char * nthRoot ( char str1[], char str2[])
                 tmp = pow( i, (1 / i1) ) * (-1);
             else                                // truong hop so chan
             {
-                strcpy(str, "MATH ERROR");
+                strcpy(str, "No Solution!");
                 return str;
             }
         }
@@ -272,7 +272,7 @@ char * nthRoot ( char str1[], char str2[])
             {
                 if ( str2[strlen(str2) - 1] % 2 == 0)
                 {
-                    strcpy(str, "MATH ERROR");
+                    strcpy(str, "No Solution!");
                     return str;
                 }
                 else tmp = 1 / (pow( i, (1 / i1) ) * (-1));
@@ -283,7 +283,7 @@ char * nthRoot ( char str1[], char str2[])
                 tmp = 1 / (pow( i, (1 / i1) ) * (-1));
             else                               // truong hop so chan
             {
-                strcpy(str, "MATH ERROR");
+                strcpy(str, "No Solution!");
                 return str;
             }
         }
