@@ -74,7 +74,7 @@ char * rTan(char s[])
     if ( (i > 1.57078 && i < 1.5708) || (i < -1.57078 && i > -1.5708) ||
         (i > 4.71237 && i < 4.7124) || (i < -4.71237 && i > -4.7124))
     {
-        strcpy(str, "MATH ERROR");
+        strcpy(str, "No Solution!");
         return str;
     }
     strcpy(str, numberToString(tan(i)));
@@ -87,7 +87,7 @@ char * dTan(char s[])
     long double i = stringToNumber(s);
     if ( i == 90 || i == -90 || i == 270 || i == -270)
     {
-        strcpy(str, "MATH ERROR");
+        strcpy(str, "No Solution!");
         return str;
     }
     strcpy(str, numberToString(sin(i * (M_PI / 180)) ));
