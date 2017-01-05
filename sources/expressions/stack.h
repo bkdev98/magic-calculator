@@ -99,7 +99,7 @@ char* caculateInfixDeg (char infix[]){
 				headOperator = get (&Operators);
 				headOpearatorPriority = priority(headOperator);
 
-				if (opearatorPriority >= headOpearatorPriority){
+				if (opearatorPriority > headOpearatorPriority){
 					CharToString[0] = infix[i]; // chuyen ky tu char sang string
 					push (CharToString, &Operators);
 				}
