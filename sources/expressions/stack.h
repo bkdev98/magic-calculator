@@ -75,6 +75,10 @@ char* caculateInfixDeg (char infix[]){
 				//tach phan bieu thuc ben trong ham toan hoc
 				j = i + 2;
 				str = malloc(sizeof(char)*100);
+				if (infix[j] == '-'){
+					str[j - (i + 2)] = infix[j];
+					j++;
+				}
 				while (!isOperator(infix[j])){
 					str[j - (i + 2)] = infix[j];
 					j++;
@@ -174,6 +178,10 @@ char* caculateInfixRad (char infix[]){
 				//tach phan bieu thuc ben trong ham toan hoc
 				j = i + 2;
 				str = malloc(sizeof(char)*100);
+				if (infix[j] == '-'){
+					str[j - (i + 2)] = infix[j];
+					j++;
+				}
 				while (!isOperator(infix[j])){
 					str[j - (i + 2)] = infix[j];
 					j++;
