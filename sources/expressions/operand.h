@@ -1,5 +1,5 @@
-#define M_PI 3.141592654
-#define M_E 2.718281828
+#define PI 3.141592654
+#define E 2.718281828
 
 char *bigAdd (char st1[], char st2[]) {
   char static stRes[1000];
@@ -49,7 +49,7 @@ char * dSin(char s[])
 {
     static char str[100];
     long double i = stringToNumber(s);
-    strcpy(str, numberToString(sin(i * (M_PI / 180)) ));
+    strcpy(str, numberToString(sin(i * (PI / 180)) ));
     return str;
 }
 
@@ -65,7 +65,7 @@ char * dCoSin(char s[])
 {
     static char str[100];
     long double i = stringToNumber(s);
-    strcpy(str, numberToString(cos(i * (M_PI / 180)) ));
+    strcpy(str, numberToString(cos(i * (PI / 180)) ));
     return str;
 }
 
@@ -93,7 +93,7 @@ char * dTan(char s[])
         strcpy(str, "No Solution!");
         return str;
     }
-    strcpy(str, numberToString(sin(i * (M_PI / 180)) ));
+    strcpy(str, numberToString(sin(i * (PI / 180)) ));
     return str;
 }
 
@@ -133,7 +133,7 @@ char * logn(char s[])
 {
     static char str[100];
     long double i = stringToNumber(s), tmp;
-    tmp = log(i) / log(M_E);
+    tmp = log(i) / log(E);
     strcpy(str, numberToString(tmp));
     return str;
 }
