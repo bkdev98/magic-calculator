@@ -49,6 +49,8 @@ void showHelp() {
 
 void printError(int n) {
   switch (n) {
+    case -20: printf("Expression Calculator: Math error: Can't not compute Tan\n");
+            break;
     case -19: printf("Expression Calculator: Syntax error: Unaccepted symbol!\n");
             break;
     case -18: printf("Expression Calculator: Wrong number syntax!\n");
