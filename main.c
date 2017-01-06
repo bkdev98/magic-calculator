@@ -15,8 +15,8 @@ int trigonometricMode = 0;
 #include "sources/views.h"
 #include "sources/expressionCalculator.h"
 #include "sources/fileControl.h"
+#include "sources/readUserInput.h"
 
-int readLineMagic();
 void playMagic();
 void stopMagic();
 void changeMode();
@@ -24,39 +24,18 @@ void changeMode();
 int main(void) {
   printHeader();
   do {
-    loadValue();
-    if (trigonometricMode == 0)
+    loadValue();  //  Load Menu Mode Value form File data.mcal
+    if (trigonometricMode == 0) //  Deg Mode
       printf("Current Mode: Deg. Type -m to switch.\n");
-    else
+    else  //  Rad Mode
       printf("Current Mode: Rad. Type -m to switch.\n");
-    playMagic();
+
+    playMagic();  //  Read User Input, Check Syntax & Process
+
     if (isStop)
       sayGoodbye();
   } while (isStop == 0);
-
   return 0;
-}
-
-int readLineMagic() {
-  printf("$ ~ ");
-  scanf("%s", stringLine);
-  if (strlen(stringLine) == 2) {
-    if (stringLine[0] == '-' && stringLine[1] == 'h')
-      return 4;
-    if (stringLine[0] == '-' && stringLine[1] == 'c')
-      return 5;
-    if (stringLine[0] == '-' && stringLine[1] == 'e')
-      return 6;
-    if (stringLine[0] == '-' && stringLine[1] == 'm')
-      return 7;
-  }
-  for (int i = 0; i <= strlen(stringLine) - 1; i++) {
-    if (stringLine[i] == 't' && stringLine[i+1] == 'o')
-      return checkConverterSyntax(stringLine);
-    if (stringLine[i] == 'x')
-      return checkEquationSyntax(stringLine);
-  };
-  return checkExpressionSyntax(stringLine);
 }
 
 void playMagic() {

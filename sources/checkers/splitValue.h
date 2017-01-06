@@ -431,7 +431,6 @@ void splitValueTwoHiddensEquation(char str[]) {
   c1[j] = '\0';
 }
 
-
 void splitValueThreeHiddensEquation(char str[]) {
   // -2x+3y-z-6=0&x-y+2z=9&x-y+z=1
   int i = 0, j = 0;
