@@ -16,7 +16,7 @@ int priority (char c); // xac dinh muc do uu tien cua toan tu
 int isOperator (char c); // kiem tra xem co phai la toan tu hay khong
 char* getNumber (int* begin, char str[]); // tach so ra tu xau
 char* getNegativeNumber (int* begin, char str[]); // lay so am
-char* solveTwoOperand (char opearator, char operandA[], char operandB[]);
+char* solveTwoOperand (char opearator, char operandA[], char operandB[], int *OK);
 int isFuction (char c);
 char* solveFuncDeg (char function[], char operand[]);
 char* solveFuncRad (char function[], char operand[]);
@@ -38,6 +38,7 @@ char* caculateInfixDeg (char infix[]){
 	Node *Operators = creatNode(" "); //stack chua toan tu
 	int leng = strlen(infix);
 	int i, begin = 0, j;
+	int OK = 1;
 	int opearatorPriority; // muc do uu tien cua toan tu moi doc vao
 	int headOpearatorPriority; // muc do uu tien cua toan tu tren dinh stack
 	char *str, headOperator, CharToString[1];
@@ -65,8 +66,13 @@ char* caculateInfixDeg (char infix[]){
 				while (*popOperator != '('){
 				 	popOperandA = pop(&Operands);
 				 	popOperandB = pop(&Operands);
-				 	result = solveTwoOperand(popOperator[0], popOperandB, popOperandA);
-				 	push(result, &Operands);
+				 	result = solveTwoOperand(popOperator[0], popOperandB, popOperandA, &OK);
+				 	if (!OK){
+						return result;
+					}
+					else{
+						push(result, &Operands);
+					}
 				 	popOperator = pop(&Operators);
 				 }
 			}
@@ -112,8 +118,13 @@ char* caculateInfixDeg (char infix[]){
 					popOperator = pop(&Operators);
 				 	popOperandA = pop(&Operands);
 				 	popOperandB = pop(&Operands);
-				 	result = solveTwoOperand(popOperator[0], popOperandB, popOperandA);
-				 	push(result, &Operands);
+				 	result = solveTwoOperand(popOperator[0], popOperandB, popOperandA, &OK);
+				 	if (!OK){
+						return result;
+					}
+					else{
+						push(result, &Operands);
+					}
 
 				 	CharToString[0] = infix[i]; // chuyen ky tu char sang string
 					push (CharToString, &Operators); // day toan tu moi doc vao stack
@@ -127,8 +138,13 @@ char* caculateInfixDeg (char infix[]){
 		popOperator = pop(&Operators);
 		popOperandA = pop(&Operands);
 		popOperandB = pop(&Operands);
-		result = solveTwoOperand(popOperator[0], popOperandB, popOperandA);
-		push(result, &Operands);
+		result = solveTwoOperand(popOperator[0], popOperandB, popOperandA, &OK);
+		if (!OK){
+			return result;
+		}
+		else{
+			push(result, &Operands);
+		}
 	}
 	//tra ve ket qua
 	return Operands->data;
@@ -142,6 +158,7 @@ char* caculateInfixRad (char infix[]){
 	int i, begin = 0, j;
 	int opearatorPriority; // muc do uu tien cua toan tu moi doc vao
 	int headOpearatorPriority; // muc do uu tien cua toan tu tren dinh stack
+	int OK;
 	char *str, headOperator, CharToString[1];
 	char *popOperandA, *popOperandB, *popOperator;
 	char function, *funcName; //sin cos tan ...
@@ -168,8 +185,13 @@ char* caculateInfixRad (char infix[]){
 				while (*popOperator != '('){
 				 	popOperandA = pop(&Operands);
 				 	popOperandB = pop(&Operands);
-				 	result = solveTwoOperand(popOperator[0], popOperandB, popOperandA);
-				 	push(result, &Operands);
+				 	result = solveTwoOperand(popOperator[0], popOperandB, popOperandA, &OK);
+				 	if (!OK){
+						return result;
+					}
+					else{
+						push(result, &Operands);
+					}
 				 	popOperator = pop(&Operators);
 				 }
 			}
@@ -215,8 +237,13 @@ char* caculateInfixRad (char infix[]){
 					popOperator = pop(&Operators);
 				 	popOperandA = pop(&Operands);
 				 	popOperandB = pop(&Operands);
-				 	result = solveTwoOperand(popOperator[0], popOperandB, popOperandA);
-				 	push(result, &Operands);
+				 	result = solveTwoOperand(popOperator[0], popOperandB, popOperandA, &OK);
+				 	if (!OK){
+						return result;
+					}
+					else{
+						push(result, &Operands);
+					}
 
 				 	CharToString[0] = infix[i]; // chuyen ky tu char sang string
 					push (CharToString, &Operators); // day toan tu moi doc vao stack
@@ -230,8 +257,14 @@ char* caculateInfixRad (char infix[]){
 		popOperator = pop(&Operators);
 		popOperandA = pop(&Operands);
 		popOperandB = pop(&Operands);
-		result = solveTwoOperand(popOperator[0], popOperandB, popOperandA);
-		push(result, &Operands);
+		result = solveTwoOperand(popOperator[0], popOperandB, popOperandA, &OK);
+		if (!OK){
+			return result;
+		}
+		else{
+			push(result, &Operands);
+		}
+		
 	}
 	//tra ve ket qua
 	return Operands->data;
@@ -304,8 +337,9 @@ int isExistFunc (char str[]){
 	return 0;
 }
 
-char* solveTwoOperand (char operator, char operandA[], char operandB[]){
+char* solveTwoOperand (char operator, char operandA[], char operandB[], int *OK){
 	char *result;
+	static char error[14] = "Can't div Zero";
 	switch (operator){
 		case '+' :
 			result = bigAdd(operandA, operandB);
@@ -318,7 +352,8 @@ char* solveTwoOperand (char operator, char operandA[], char operandB[]){
 			break;
 		case '/' :
 			if (strcmp("0", operandB) == 0){
-				//	printf("Division by zero error");
+				*OK = 0;
+				return error;
 			}
 			else {
 				result = bigDiv(operandA, operandB);
