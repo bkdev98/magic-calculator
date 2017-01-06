@@ -1,3 +1,23 @@
+void readTwoHiddensLine() {
+  char s[100];
+  printf("Second Equation: \n$ ~ ");
+  scanf("%s", s);
+  strcat(stringLine, "&");
+  strcat(stringLine, s);
+}
+
+void readThreeHiddensLine() {
+  char s1[100], s2[100];
+  printf("Second Equation: \n$ ~ ");
+  scanf("%s", s1);
+  strcat(stringLine, "&");
+  strcat(stringLine, s1);
+  printf("Third equation: \n$ ~ ");
+  scanf("%s", s2);
+  strcat(stringLine, "&");
+  strcat(stringLine, s2);
+}
+
 int readLineMagic() {
   printf("$ ~ ");
   scanf("%s", stringLine);
@@ -60,24 +80,4 @@ int readLineMagic() {
     }
   }
   return checkExpressionSyntax(stringLine);
-}
-
-void readTwoHiddensLine() {
-  char s[100];
-  printf("Second Equation: \n$ ~ ");
-  scanf("%s", s);
-  strcat(stringLine, "&");
-  strcat(stringLine, s);
-}
-
-void readThreeHiddensLine() {
-  char s1[100], s2[100];
-  printf("Second Equation: \n$ ~ ");
-  scanf("%s", s1);
-  strcat(stringLine, "&");
-  strcat(stringLine, s1);
-  printf("Third equation: \n$ ~ ");
-  scanf("%s", s2);
-  strcat(stringLine, "&");
-  strcat(stringLine, s2);
 }
