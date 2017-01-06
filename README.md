@@ -8,7 +8,8 @@ Final project for Fcode C Training.
 ![Image](http://i.imgur.com/jtRPDQy.png)
 
 # Requirement
-- GCC 5.4.0 and up.
+- GCC 4.9.0 and up.
+- If got errors, please run with -std=c99 .
 
 # Installation
 ```
