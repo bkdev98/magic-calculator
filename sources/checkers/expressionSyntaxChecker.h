@@ -1,9 +1,9 @@
 int checkExpressionSyntax(char s[]) {
   char digits[10] = "0123456789";
-	char symbol[100] = "0123456789+-*/^%vsincostanloglnsqrtcbrt().";
+	char symbol[100] = "0123456789+-*/^%vsincostanloglnsqrtcbrt().,";
 	char operand[6] = "+-*/^v";
 	char func[5] = "sctlL";
-  char symbolSqrt[69] = "0123456789()";
+  char symbolSqrt[69] = "0123456789(),";
 	int bracket = 0;
 	//-11  thieu ngoac
 	//-12  thieuToanTu // (5*6)(5-6)
@@ -15,6 +15,7 @@ int checkExpressionSyntax(char s[]) {
 	//-19  kyTuLa // 56a*8
   	//-20 loi cua tan
   	//-21  -8*6     *8-5
+    // -22 log(-2, -3)
 
 	int i, leng;
 	leng = strlen(s);
@@ -53,13 +54,20 @@ int checkExpressionSyntax(char s[]) {
 	         s[i+4] == '2' && s[i+5] == '7' && s[i+6] == '0' && s[i+7] == ')') ||
 
 	        (s[i] == 't' && s[i+1] == 'a' && s[i+2] == 'n' && s[i+3] == '(' &&
-	         s[i+4] == '-' && s[i+5] == '2' && s[i+6] == '7' && s[i+7] == '0' && s[i+8] == ')')){
+	         s[i+4] == '-' && s[i+5] == '2' && s[i+6] == '7' && s[i+7] == '0' && s[i+8] == ')'))
+      {
 	    	return -20;
 	    }
+      if (s[i] == 'l' && s[i + 1] == 'o' && s[i + 2] == 'g')
+      {
+         for ( int j = i + 3; s[j] != ')'; j++)
+              if (strchr(symbolSqrt, s[j]) == NULL)
+                  return -22;
+      }
 	    if (strchr(operand, s[0]) != NULL){
-	    	return -21;         
+	    	return -21;
 		}
-	
+
 	}
 
 	if (bracket % 2 != 0){
