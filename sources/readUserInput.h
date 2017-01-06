@@ -56,7 +56,7 @@ int readLineMagic() {
       {
         //  Two Hiddens Equation
         if (isThreeHiddens == 0) {
-          printf("2 %d %s\n", isEnough, stringLine);
+          //  printf("2 %d %s\n", isEnough, stringLine);
           //  User Input Is Enough
           if (isEnough == 1) {
             return checkEquationSyntax(stringLine);
@@ -66,7 +66,7 @@ int readLineMagic() {
         }
         else // Three Hiddens Equation
         {
-          printf("3 %d %s\n", isEnough, stringLine);
+          //  printf("3 %d %s\n", isEnough, stringLine);
           //  User Input Is Enough
           if (isEnough == 1) {
             return checkEquationSyntax(stringLine);
