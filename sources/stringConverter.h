@@ -1,3 +1,9 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+#include <math.h>
+
 char * numberToString(long double num) {
     static char output[50];
     snprintf(output, 50, "%Lf", num);

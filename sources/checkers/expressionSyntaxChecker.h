@@ -13,7 +13,8 @@ int checkExpressionSyntax(char s[]) {
 	//-16  ngoacRong // (5*8)*()/(5+4)
 	//-18  soThucSai // 5.*6.1
 	//-19  kyTuLa // 56a*8
-  //-20 loi cua tan
+  	//-20 loi cua tan
+  	//-21  -8*6     *8-5
 
 	int i, leng;
 	leng = strlen(s);
@@ -42,22 +43,27 @@ int checkExpressionSyntax(char s[]) {
 		if ((strchr(operand, s[i])) != NULL && (strchr(operand, s[i+1])) != NULL){
 			return - 13;
 		}
-    if ((s[i] == 't' && s[i+1] == 'a' && s[i+2] == 'n' &&
-         s[i+3] == '(' && s[i+4] == '9' && s[i+5] == '0' && s[i+6] == ')') ||
+	    if ((s[i] == 't' && s[i+1] == 'a' && s[i+2] == 'n' &&
+	         s[i+3] == '(' && s[i+4] == '9' && s[i+5] == '0' && s[i+6] == ')') ||
 
-        (s[i] == 't' && s[i+1] == 'a' && s[i+2] == 'n' && s[i+3] == '(' &&
-         s[i+4] == '-' && s[i+5] == '9' && s[i+6] == '0' && s[i+7] == ')') ||
+	        (s[i] == 't' && s[i+1] == 'a' && s[i+2] == 'n' && s[i+3] == '(' &&
+	         s[i+4] == '-' && s[i+5] == '9' && s[i+6] == '0' && s[i+7] == ')') ||
 
-        (s[i] == 't' && s[i+1] == 'a' && s[i+2] == 'n' && s[i+3] == '(' &&
-         s[i+4] == '2' && s[i+5] == '7' && s[i+6] == '0' && s[i+7] == ')') ||
+	        (s[i] == 't' && s[i+1] == 'a' && s[i+2] == 'n' && s[i+3] == '(' &&
+	         s[i+4] == '2' && s[i+5] == '7' && s[i+6] == '0' && s[i+7] == ')') ||
 
-        (s[i] == 't' && s[i+1] == 'a' && s[i+2] == 'n' && s[i+3] == '(' &&
-         s[i+4] == '-' && s[i+5] == '2' && s[i+6] == '7' && s[i+7] == '0' && s[i+8] == ')'))
-
-         return -20;
+	        (s[i] == 't' && s[i+1] == 'a' && s[i+2] == 'n' && s[i+3] == '(' &&
+	         s[i+4] == '-' && s[i+5] == '2' && s[i+6] == '7' && s[i+7] == '0' && s[i+8] == ')')){
+	    	return -20;
+	    }
+	    if (strchr(operand, s[i]) != NULL){
+	    	return -21;         
+		}
+	
 	}
+
 	if (bracket % 2 != 0){
 		return -11;
 	}
-	return 1;
+		return 1;
 };

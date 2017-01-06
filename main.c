@@ -7,7 +7,6 @@
 char stringLine[6969];
 int isStop = 0;
 int trigonometricMode = 0;
-
 #include "sources/stringConverter.h"
 #include "sources/syntaxChecker.h"
 #include "sources/equationCalculator.h"
@@ -41,6 +40,8 @@ int main(void) {
 void playMagic() {
   int typeLine = readLineMagic();
   switch(typeLine) {
+    case -21: printError(typeLine);
+            break;
     case -20: printError(typeLine);
             break;
     case -19: printError(typeLine);
