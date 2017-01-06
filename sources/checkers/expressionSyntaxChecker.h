@@ -56,7 +56,7 @@ int checkExpressionSyntax(char s[]) {
 	         s[i+4] == '-' && s[i+5] == '2' && s[i+6] == '7' && s[i+7] == '0' && s[i+8] == ')')){
 	    	return -20;
 	    }
-	    if (strchr(operand, s[i]) != NULL){
+	    if (strchr(operand, s[0]) != NULL){
 	    	return -21;         
 		}
 	
