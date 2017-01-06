@@ -1,3 +1,6 @@
+#define M_PI 3.141592654
+#define M_E 2.718281828
+
 char *bigAdd (char st1[], char st2[]) {
   char static stRes[1000];
   long double a, b;
