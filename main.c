@@ -41,6 +41,8 @@ int main(void) {
 void playMagic() {
   int typeLine = readLineMagic();
   switch(typeLine) {
+    case -20: printError(typeLine);
+            break;
     case -19: printError(typeLine);
             break;
     case -18: printError(typeLine);
